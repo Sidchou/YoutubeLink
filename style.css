@@ -1,0 +1,40 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: gray;
+
+}
+canvas {
+  display: block;
+}
+.inputcontainer {
+  display: block;
+  width: 400px;
+  padding: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  background: lightgray;
+}
+.input {
+  display: inline-block;
+  background: white;
+  margin: auto;
+}
+.embedcontainer {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.invalid {
+  color: grey;
+}
+.valid {
+  color: black;
+}
+iframe {
+  display: block;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
