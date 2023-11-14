@@ -35,10 +35,10 @@ window.onload = function () {
         linkRef.replace("shorts", "embed") +
         '" title="YouTube video player" frameborder="2" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
 
-      iframe.innerHTML = linkRef;
+      // iframe.innerHTML = linkRef;
     }
   }
-  form.onsubmit = function onSubmit(form) {
+  form.onclick = function onSubmit(form) {
     embeding();
     linkRef = short.value;
     if (
