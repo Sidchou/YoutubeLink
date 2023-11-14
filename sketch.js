@@ -21,6 +21,7 @@ window.onload = function () {
     navigator.clipboard.writeText(long.value);
     console.log("copy")
   };
+  short.value = linkRef ;
   embeding();
   onSubmit();
   
