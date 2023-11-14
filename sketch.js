@@ -1,79 +1,43 @@
-window.onload = function () {
-  // const pasteButton = document.querySelector("#paste-button");
-  const copyButton = document.querySelector("#copy-button");
-
-  const convert = document.querySelector("#convert-button");
-  const short = document.querySelector("#short");
-  const long = document.querySelector("#long");
-  const iframe = document.querySelector(".embedcontainer");
-  let linkRef = "https://youtube.com/shorts/kUgRI9MQ7-I";
-  let validation = false;
-
-  // pasteButton.onclick = function onPast() {
-  //   navigator.clipboard.readText().then(
-  //     (cliptext) =>
-  //       (short.value = cliptext),
-  //     (err) => console.log(err)
-  //   );
-  // };
-  
-  copyButton.onclick = function onCopy() {
-    navigator.clipboard.writeText(long.value);
-    console.log("copy")
-  };
-  short.value = linkRef ;
-  embeding();
-  onSubmit();
-  
-  short.onblur = () =>{embeding();}
-
-  function embeding() {
-    linkRef = short.value;
-    if (
-      linkRef.match("youtube.com") == "youtube.com" &&
-      linkRef.match("shorts/") == "shorts/"
-    ) {
-      linkRef =
-        '<iframe width="560" height="315" src="' +
-        linkRef.replace("shorts", "embed") +
-        '" title="YouTube video player" frameborder="2" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
-
-      iframe.innerHTML = linkRef;
-    }
-  }
-  
-  convert.onclick = () =>{onSubmit();}
-  short.onkeydown = function(event){
-   if (event.key === "Enter"){onSubmit()}
-  }; 
-  
-    function onSubmit() {
-    embeding();
-    linkRef = short.value;
-    if (
-      linkRef.match("youtube.com") == "youtube.com" &&
-      linkRef.match("shorts/") == "shorts/"
-    ) {
-      linkRef.replace("shorts/", "watch?v=");
-      long.value = linkRef.replace("shorts/", "watch?v=");
-      validation = true;
-    } else {
-      long.value = "INVALID LINK";
-      validation = false;
-    }
-
-    if (validation) {
-      long.className = long.className.replace(" invalid", " valid");
-      copyButton.disabled = false;
-    } else {
-      long.className = long.className.replace(" valid", " invalid");
-      copyButton.disabled = true;
- 
-    }
-    console.log(validation);
-
-    console.log(copyButton);
-  }
-  
-}
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <main></main>
+    <script src="sketch.js"></script>
+    <h1 style="padding: 15px; margin:auto; text-align:center;color:pink">Youtube Shorts Link Converter</h1>
+    <div class="inputcontainer">
+      <div class="input">
+        <form>
+          <label for="short">Shorts Link:</label>
+          <input
+            class="inputfield"
+            type="text"
+            id="short"
+            name="short"
+            size="50"
+          />
+          <!--           <button id="paste-button" type="button" size="10">📋</button>  -->
+          <br /><br />
+          <label for="long">Normal Link:</label>
+          <input
+            class="inputfield invalid"
+            type="text"
+            id="long"
+            name="long"
+            size="50"
+            readonly
+          />
+          <button id="copy-button" type="button" size="10" disabled>📋</button>
+          <br /><br />
+          <input type="button" id="convert-button" value="Convert" />
+        </form>
+      </div>
+    </div>
+    <div class="embedcontainer"></div>
+  </body>
+</html>
