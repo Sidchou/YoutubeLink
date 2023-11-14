@@ -2,7 +2,7 @@ window.onload = function () {
   // const pasteButton = document.querySelector("#paste-button");
   const copyButton = document.querySelector("#copy-button");
 
-  const form = document.querySelector("form");
+  const convert = document.querySelector("#convert-button");
   const short = document.querySelector("#short");
   const long = document.querySelector("#long");
   const iframe = document.querySelector(".embedcontainer");
@@ -16,13 +16,13 @@ window.onload = function () {
   //     (err) => console.log(err)
   //   );
   // };
+  
   copyButton.onclick = function onCopy() {
     navigator.clipboard.writeText(long.value);
     console.log("copy")
   };
 
-  short.value = "";
-  short.onblur = embeding(event);
+  short.onblur = () =>{embeding(event);}
 
   function embeding(event) {
     linkRef = short.value;
@@ -35,10 +35,16 @@ window.onload = function () {
         linkRef.replace("shorts", "embed") +
         '" title="YouTube video player" frameborder="2" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
 
-      // iframe.innerHTML = linkRef;
+      iframe.innerHTML = linkRef;
     }
   }
-  form.onclick = function onSubmit(form) {
+  
+  convert.onclick = () =>{onSubmit();}
+  short.onkeydown = function(event){
+   if (event.key === "Enter"){onSubmit()}
+  }; 
+  
+    function onSubmit() {
     embeding();
     linkRef = short.value;
     if (
@@ -64,5 +70,7 @@ window.onload = function () {
     console.log(validation);
 
     console.log(copyButton);
-  };
-};
+  }
+  
+}
+
