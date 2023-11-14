@@ -6,7 +6,7 @@ window.onload = function () {
   const short = document.querySelector("#short");
   const long = document.querySelector("#long");
   const iframe = document.querySelector(".embedcontainer");
-  let linkRef = "";
+  let linkRef = "https://youtube.com/shorts/kUgRI9MQ7-I";
   let validation = false;
 
   // pasteButton.onclick = function onPast() {
@@ -21,10 +21,12 @@ window.onload = function () {
     navigator.clipboard.writeText(long.value);
     console.log("copy")
   };
+  embeding();
+  onSubmit();
+  
+  short.onblur = () =>{embeding();}
 
-  short.onblur = () =>{embeding(event);}
-
-  function embeding(event) {
+  function embeding() {
     linkRef = short.value;
     if (
       linkRef.match("youtube.com") == "youtube.com" &&
